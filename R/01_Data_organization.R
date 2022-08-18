@@ -10,8 +10,9 @@
 
 # Loading packages
 
-library(plater) # plater is a package to convert 96 well reads into a tyde format 
-                #kepping well position identification
+library(plater) # plater is a package to convert 96 well reads into a tide format 
+#keeping well position identification
+source('functions/PositionScore.R')
 
 # Loading data
 
@@ -22,20 +23,20 @@ EXP2 <-  read_plate(file = "data/raw/MTT_TC_THP1_EXP2.csv",
 EXP3 <-  read_plate(file = "data/raw/MTT_TC_THP1_EXP3.csv", 
                     well_ids_column = "Wells", sep = ",")
 
-# Data structute check
+# Data structure check
 
-head(EXP1) # The 96 well plate contains 8 rows and 12 colums. Each row correspond a
-           #technical replicate of  one of TCBZ doses distribuited among the 12 columns 
+head(EXP1) # The 96 well plate contains 8 rows and 12 column. Each row correspond a
+#technical replicate of  one of TCBZ doses distributed among the 12 columns 
 
 
-# Aditional information
+# Additional information
 
 ## Experiment 1
 
 EXP1$conc <-  rep(c("0.000","0.485","0.970",                       # tested concentrations
-                     "1.950","3.900","7.800",
-                     "15.600","31.250","62.500",
-                     "125.000","250.000","500.000"), 8)
+                    "1.950","3.900","7.800",
+                    "15.600","31.250","62.500",
+                    "125.000","250.000","500.000"), 8)
 
 EXP1$rep_tec <- c(rep_len(1, 12), rep_len(2,12), rep(3, 12),       # replicates ID
                   rep_len(4,12) , rep_len (5,12), rep_len (6,12),
@@ -72,8 +73,14 @@ EXP3$experiment <- "EXP_3"                                         # Experiment 
 
 MTT_TC_THP1_Full  <- rbind(EXP1, EXP2, EXP3)
 
+# Adding data position score
+
+MTT_TC_THP1_Full$PositionScore <- sapply(MTT_TC_THP1_Full$Wells, PositionScore)
+
+class(MTT_TC_THP1_Full)
+
 # CSV exportation
 
-write.csv(MTT_TC_THP1_Full, file = "data/processed/MTT_TC_THP1_Full.csv", sep = ",", 
-          row.names = F)
+write.csv(MTT_TC_THP1_Full, file = "data/processed/MTT_TC_THP1_Full.csv", 
+          sep = ",", row.names = F)
 
