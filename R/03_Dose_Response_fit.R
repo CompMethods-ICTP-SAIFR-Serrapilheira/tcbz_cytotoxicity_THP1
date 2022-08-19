@@ -21,11 +21,11 @@ sapply(MTT_TC_THP1, class)
 # Ajusting the models
 
 THP1_TCBZ.LL4 <- drm(values ~ conc, data = MTT_TC_THP1 , fct = LL.4())
-plot(THP1_TCBZ.LL4, xlim = c(0,1000), ylim = c(0,100), 
+plot(THP1_TCBZ.LL4, xlim = c(0,1000), ylim = c(0,0.7), 
      broken = TRUE, gridsize = 100, xlab = "Triclabendazol [  ] μM", 
-     ylab = "THP-1 Citotoxicity (%)")
+     ylab = "Absorbance", type = "bars")
 
-jpeg("figs/03_LL4_DoseResponse_Fit.jpeg")
+jpeg("figs/03_DoseResponseCurve.jpeg")
 
 
 #  Fit diagnostic
@@ -45,5 +45,6 @@ qqnorm(residuals(THP1_TCBZ.LL4), xlab="Theoretical quantiles", ylab="Residuals",
 qqline(residuals(THP1_TCBZ.LL4))
 
 jpeg("figs/03_Fit_diagnostic.jpeg")
+
 
 
