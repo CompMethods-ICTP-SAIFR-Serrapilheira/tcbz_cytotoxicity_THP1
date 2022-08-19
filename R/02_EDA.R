@@ -28,7 +28,7 @@ sapply(MTT_TC_THP1, class)
 
 # Reescaling data
 
-MTT_TC_THP1$values <- rescale(MTT_TC_THP1$values, c(0,100))
+MTT_TC_THP1$values <- rescale(MTT_TC_THP1$values, c(0,1))
 
 # Summary
 
@@ -62,7 +62,7 @@ MTT_TC_THP1 <- MTT_TC_THP1[-outliers,]
 MTT_BP <-  ggplot(MTT_TC_THP1, aes(conc, values))+
   geom_boxplot()+
   ggtitle("Box plot of THP-1 viability per TCBZ dose") +
-  labs(x = " Conc [   ] μM", y = "Growth (%)")+
+    labs(x = " Conc [   ] μM", y = "Absorbance")+
   theme(plot.title = element_text(size = 14,face="bold"),
         axis.text.x = element_text(size = 10), 
         axis.text.y = element_text(size = 10),
@@ -79,7 +79,7 @@ ggsave("figs/02_MTT_tcbz_BP.jpeg", plot = last_plot(), dpi = 300 )
 MTT_BP_PE <-  ggplot(MTT_TC_THP1, aes(PositionScore, values))+
   geom_boxplot()+
   ggtitle("Box plot of THP-1 viability per TCBZ dose") +
-  labs(x = " Conc [   ] μM", y = "Position score related to the plate boarder")+
+  labs(x = " Position score related to the plate boarder", y = "Absorbance")+
   theme(plot.title = element_text(size = 14,face="bold"),
         axis.text.x = element_text(size = 10), 
         axis.text.y = element_text(size = 10),
@@ -95,4 +95,3 @@ ggsave("figs/02_MTT_tcbz_BP_PE.jpeg", plot = last_plot(), dpi = 300 )
 
 write.csv(MTT_TC_THP1, file = "data/processed/02_MTT_TC_THP1.csv", 
           sep = ",", row.names = F)
-
