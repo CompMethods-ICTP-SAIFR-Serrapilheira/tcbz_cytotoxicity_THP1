@@ -26,8 +26,15 @@ This data were produced by Beatris S. Borges, a PhD student, in the Cell Biology
               ├── figs/
               └── README.md
 
-In the `data` folder are located the raw and processed datasets. In the `functions` you will find the functions created for some steps of analysis. The `R` directory holds all scripts. Figures outputs can be found in the `figs` folder, and you can find the markdown report in `docs` folder.
+In the <data> folder are located the raw and processed datasets. In the `functions` you will find the functions created for some steps of analysis. The `R` directory holds all scripts. Figures outputs can be found in the `figs` folder, and you can find the markdown report in `docs` folder.
 
 # Requirements
 
-\`\`\` library(plater) library(dplyr) library(ggplot) library(scales) library(stats) library(skimr) library(rstatix) library(drc) ´´´
+    * library(plater) 
+    * library(dplyr)
+    * library(ggplot)
+    * library(scales) 
+    * library(stats) 
+    * library(skimr) 
+    * library(rstatix) 
+    * library(drc) 
