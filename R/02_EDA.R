@@ -74,7 +74,7 @@ MTT_BP
 
 # Overall samples central mesures visualization
 
-ggsave("figs/02_MTT_tcbz_BP.jpeg", plot = last_plot(), dpi = 300 )
+ggsave("figs/02_MTT_tcbz_BP.jpeg", dpi = 300 )
 
 MTT_BP_PE <-  ggplot(MTT_TC_THP1, aes(PositionScore, values))+
   geom_boxplot()+
@@ -91,7 +91,8 @@ MTT_BP_PE <-  ggplot(MTT_TC_THP1, aes(PositionScore, values))+
 MTT_BP_PE
 
 # Samples central measures visualization by position inside 96 Well plate
-ggsave("figs/02_MTT_tcbz_BP_PE.jpeg", plot = last_plot(), dpi = 300 )
+ggsave("figs/02_MTT_tcbz_BP_PE.jpeg", dpi = 300 )
 
 write.csv(MTT_TC_THP1, file = "data/processed/02_MTT_TC_THP1.csv", 
           sep = ",", row.names = F)
+
